@@ -7,7 +7,8 @@
         local: {
           get: (keys) => new Promise((r) => chrome.storage.local.get(keys, r)),
           set: (items) => new Promise((r) => chrome.storage.local.set(items, r))
-        }
+        },
+        onChanged: chrome.storage.onChanged
       }
     }
   }
@@ -28,15 +29,28 @@
   let userCollapsed = false
   let darkMode = false
 
+  function watchSettings() {
+    if (typeof browser !== 'undefined' && browser.storage && browser.storage.onChanged) {
+      browser.storage.onChanged.addListener((changes, area) => {
+        if (area !== 'local') return
+        if (changes.maxChars) { let p = parseInt(changes.maxChars.newValue, 10); if (p >= 50 && p <= 280) MAX_CHARS = p }
+        if (changes.numStyle) numStyle = changes.numStyle.newValue
+        if (changes.urlCounting !== undefined) urlCountingEnabled = changes.urlCounting.newValue
+        if (changes.fillMode !== undefined) fillMode = changes.fillMode.newValue
+      })
+    }
+  }
+
   function init() {
     if (typeof browser !== 'undefined' && browser.storage) {
       browser.storage.local.get(['maxChars', 'numStyle', 'urlCounting', 'fillMode']).then((result) => {
-        if (result.maxChars) MAX_CHARS = parseInt(result.maxChars, 10) || 280
+        if (result.maxChars) { let p = parseInt(result.maxChars, 10); if (p >= 50 && p <= 280) MAX_CHARS = p }
         if (result.numStyle) numStyle = result.numStyle
         if (result.urlCounting !== undefined) urlCountingEnabled = result.urlCounting
         if (result.fillMode !== undefined) fillMode = result.fillMode
       }).catch(() => {})
     }
+    watchSettings()
     watchComposeBox()
     watchTheme()
   }
@@ -74,7 +88,7 @@
     }
 
     let check = () => {
-      let box = document.querySelector('[data-testid="tweetTextarea_0"]')
+      let box = document.querySelector('[data-testid="tweetTextarea_0"], [role="textbox"][aria-label*="Post text"]')
       if (box && box !== composeBox) attach(box)
       if (!box && composeBox) detach()
     }
@@ -84,7 +98,7 @@
     observer.observe(document.body, { childList: true, subtree: true })
 
     document.addEventListener('focusin', (e) => {
-      let box = e.target.closest('[data-testid="tweetTextarea_0"]')
+      let box = e.target.closest('[data-testid="tweetTextarea_0"], [role="textbox"][aria-label*="Post text"]')
       if (box && box !== composeBox) attach(box)
     })
   }

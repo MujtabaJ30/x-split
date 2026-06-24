@@ -13,7 +13,7 @@ Write-Host 'Building Firefox extension...'
 $firefoxDir = 'extension'
 $firefoxZip = "dist\x-split-firefox.zip"
 if (Test-Path -LiteralPath $firefoxZip) { Remove-Item -LiteralPath $firefoxZip -Force }
-Compress-Archive -LiteralPath $firefoxDir -DestinationPath $firefoxZip
+Compress-Archive -Path "$firefoxDir\*" -DestinationPath $firefoxZip
 Write-Host "  Created $firefoxZip"
 
 # --- Chrome ---
@@ -21,7 +21,7 @@ Write-Host 'Building Chrome extension...'
 $chromeDir = 'extension_chrome'
 $chromeZip = "dist\x-split-chrome.zip"
 if (Test-Path -LiteralPath $chromeZip) { Remove-Item -LiteralPath $chromeZip -Force }
-Compress-Archive -LiteralPath $chromeDir -DestinationPath $chromeZip
+Compress-Archive -Path "$chromeDir\*" -DestinationPath $chromeZip
 Write-Host "  Created $chromeZip"
 
 Write-Host ''

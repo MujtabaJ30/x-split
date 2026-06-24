@@ -55,7 +55,7 @@ WHY X-SPLIT
 PRIVACY
 X-Split does not collect, store, or transmit any personal data. All text processing is local. No third-party services. No analytics. No tracking.
 
-Full privacy policy: [INSERT YOUR URL HERE]
+Full privacy policy: https://mujtabaj30.github.io/x-split/privacy/
 ```
 
 ---
