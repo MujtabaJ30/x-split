@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X-Split</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <h1 class="popup-title">X-Split</h1>
+    <p class="popup-subtitle">Split long posts into threads.</p>
+
+    <div class="popup-section">
+      <label class="popup-label" for="maxChars">Max chars per post</label>
+      <div class="popup-input-row">
+        <input type="number" id="maxChars" class="popup-input" value="280" min="50" max="280">
+        <span class="popup-hint">X free tier limit</span>
+      </div>
+    </div>
+
+    <div class="popup-section">
+      <label class="popup-label" for="numStyle">Numbering style</label>
+      <select id="numStyle" class="popup-select">
+        <option value="parens">(1/5)</option>
+        <option value="brackets">[1/5]</option>
+        <option value="slash">1/5</option>
+      </select>
+    </div>
+
+    <div class="popup-section">
+      <label class="popup-checkbox">
+        <input type="checkbox" id="urlCounting" checked>
+        <span>Count URLs as 23 chars</span>
+      </label>
+    </div>
+
+    <div class="popup-section">
+      <label class="popup-checkbox">
+        <input type="checkbox" id="fillMode">
+        <span>Fill chunks to max chars</span>
+      </label>
+    </div>
+
+    <div class="popup-footer">
+      <p class="popup-status">Open x.com, type a long post, click Split.</p>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

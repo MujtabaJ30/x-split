@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "anti-slop": {
+      "source": "rand/cc-polymath",
+      "sourceType": "github",
+      "skillPath": "skills/anti-slop/SKILL.md",
+      "computedHash": "76efa981799d4d9454aef081ae02fd21cc38f56450d0d8bd33c5f50221f53543"
+    },
+    "browser-extension-builder": {
+      "source": "omer-metin/skills-for-antigravity",
+      "sourceType": "github",
+      "skillPath": "skills/browser-extension-builder/SKILL.md",
+      "computedHash": "5d2a8539d31fa3b81ecf9c05c585075e284cf667950e15bf9ce306dfbe593a1b"
+    },
+    "portfolio-case-study-writer": {
+      "source": "paramchoudhary/resumeskills",
+      "sourceType": "github",
+      "skillPath": "skills/portfolio-case-study-writer/SKILL.md",
+      "computedHash": "35ee213351e199402c9348987102c2116edf2d8447b4ee42e11d71c5fbca4af6"
+    },
+    "product-management": {
+      "source": "vasilyu1983/ai-agents-public",
+      "sourceType": "github",
+      "skillPath": "frameworks/shared-skills/skills/product-management/SKILL.md",
+      "computedHash": "807a00bea02beedfba3d92b189e2f004b46e683e342d70cd7a256d3b37d6e5cb"
+    }
+  }
+}
