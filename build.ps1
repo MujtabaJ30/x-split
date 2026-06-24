@@ -27,6 +27,16 @@ function New-ZipWithForwardSlashes {
     }
 }
 
+# Sync shared files from extension/ to extension_chrome/
+# (content.js, content.css, popup/ — everything except manifest.json and icons/)
+Write-Host 'Syncing Chrome files from Firefox...'
+Copy-Item -LiteralPath 'extension/content.js' -Destination 'extension_chrome/content.js' -Force
+Copy-Item -LiteralPath 'extension/content.css' -Destination 'extension_chrome/content.css' -Force
+Copy-Item -LiteralPath 'extension/popup/popup.html' -Destination 'extension_chrome/popup/popup.html' -Force
+Copy-Item -LiteralPath 'extension/popup/popup.css' -Destination 'extension_chrome/popup/popup.css' -Force
+Copy-Item -LiteralPath 'extension/popup/popup.js' -Destination 'extension_chrome/popup/popup.js' -Force
+Write-Host '  Done'
+
 # Clean previous builds
 if (Test-Path -LiteralPath 'dist') { Remove-Item -LiteralPath 'dist' -Recurse -Force }
 New-Item -ItemType Directory -Path 'dist' -Force | Out-Null

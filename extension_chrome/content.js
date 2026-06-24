@@ -54,9 +54,6 @@
     watchComposeBox()
     watchTheme()
   }
-    watchComposeBox()
-    watchTheme()
-  }
 
   function watchComposeBox() {
     let attach = (box) => {
